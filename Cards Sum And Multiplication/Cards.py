@@ -57,9 +57,9 @@ def multFitness(p_dna):
     score = 1 - abs(360 - mult) / (13 * 13 * 13 * 13 * 12 * 12 * 12 * 12 * 11 * 11)
     if score == 1:
         return score
-    while score > 0.9:
-        score -= 0.9
-        score *= 10
+    #while score > 0.9:
+     #   score -= 0.9
+      #  score *= 10
     return score
 
 
