@@ -13,13 +13,13 @@ numberOfCards = 10
 def generateDNA():
     p_dna = []
     for x in range(numberOfCards):
-        p_dna.append(getRandomNumber(13))
-    p_dna.append(getRandomNumber(numberOfCards))
+        p_dna.append(getRandomNumber(1,13))
+    p_dna.append(getRandomNumber(0,numberOfCards))
     return p_dna
 
 
-def getRandomNumber(p_upperBound):
-    return randint(0, p_upperBound)
+def getRandomNumber(p_lowerBound, p_upperBound):
+    return randint(p_lowerBound, p_upperBound)
 
 
 def initPopulation():
@@ -99,7 +99,7 @@ def crossover(p_parents):
     p2 = p_parents[1]
     child = list()
     for i in range(numberOfCards + 1):
-        p = getRandomNumber(1)
+        p = getRandomNumber(0,1)
         if p == 1:
             child.append(p1[i])
         else:
@@ -112,10 +112,10 @@ def mutate(p_dna):
         if random() < mutation:
             if x == numberOfCards:
                 p_dna.pop()
-                p_dna.append(getRandomNumber(10))
+                p_dna.append(getRandomNumber(0,numberOfCards))
             else:
                 p_dna.pop(x)
-                p_dna.insert(x, getRandomNumber(13))
+                p_dna.insert(x, getRandomNumber(1,13))
     return p_dna
 
 
@@ -139,9 +139,9 @@ def checkPopulationConsistency(p_pop):
                 if p[j] == p_pop[i][0][k]:
                     count += 1
                     if count > 4:
-                        n = getRandomNumber(13)
+                        n = getRandomNumber(1,13)
                         while n == p[j]:
-                            n = getRandomNumber(13)
+                            n = getRandomNumber(1,13)
                         p_pop[i][0][k] = n
                         checkPopulation(p_pop)
     return p_pop
